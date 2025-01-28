@@ -16,11 +16,23 @@ def figure_ax():
     ax.set_facecolor(background)
     return fig, ax
 
+def figure(figsize=None):
+    return plt.figure(facecolor=background, figsize=figsize)
+
+def subplot(nrow,ncol,index, xlabel='x', ylabel='y'):
+    ax = plt.subplot(nrow,ncol,index)
+    ax.set_facecolor(background)
+    set_plot_theme(ax, xlabel=xlabel, ylabel=ylabel, show_legend=False)
+    return ax
+
 def color(Index):
     if len(colors)>Index:
         return colors[Index]
     else:
         return None
+
+def legend():
+    plt.legend(facecolor="#2f2f2f", labelcolor=foreground,edgecolor="none")
 
 def set_plot_theme(ax, xlabel='x', ylabel='y', show_legend=True):
     ax.set_xlabel(xlabel, color=foreground,)
@@ -33,4 +45,4 @@ def set_plot_theme(ax, xlabel='x', ylabel='y', show_legend=True):
     ax.spines['left'].set_color(foreground) 
 
     if show_legend:
-        plt.legend(facecolor="#2f2f2f", labelcolor=foreground,edgecolor="none")
+        legend()
