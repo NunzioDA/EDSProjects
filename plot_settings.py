@@ -5,6 +5,34 @@ from matplotlib import pyplot as plt
 colors = ['#C88C27',  '#5C368E', '#BD4946', '#487DBA',  '#97B953', '#ff7f0e']
 foreground = '#f7f7f7'
 background = '#1f1f1f'
+legend_color = '#2f2f2f'
+
+theme_foreground = {
+    'dark': '#f7f7f7',
+    'light' : '#1f1f1f'
+}
+
+theme_background = {
+    'dark': '#1f1f1f',
+    'light' : '#f7f7f7'
+}
+
+theme_legend_color = {
+    'dark': '#2f2f2f',
+    'light' : '#ececec'
+}
+
+def set_theme(theme):
+    global foreground, background, legend_color
+
+    try:
+        foreground = theme_foreground[theme]
+        background = theme_background[theme]
+        legend_color = theme_legend_color[theme]
+    except:
+        print("Wrong theme parameter: pass either 'dark' or 'light'.")
+        print("Passed:", theme)
+
 
 def title(title):
     plt.title(title, color=foreground)
@@ -32,13 +60,13 @@ def color(Index):
         return None
 
 def legend():
-    plt.legend(facecolor="#2f2f2f", labelcolor=foreground,edgecolor="none")
+    plt.legend(facecolor=legend_color, labelcolor=foreground,edgecolor="none")
 
 def set_plot_theme(ax, xlabel='x', ylabel='y', show_legend=True):
     ax.set_xlabel(xlabel, color=foreground,)
     ax.set_ylabel(ylabel, color=foreground,)
-    ax.tick_params(axis='x', labelcolor=foreground, color=foreground)
-    ax.tick_params(axis='y', labelcolor=foreground, color=foreground)
+    ax.tick_params(axis='x', which='both', labelcolor=foreground, color=foreground)
+    ax.tick_params(axis='y', which='both', labelcolor=foreground, color=foreground)
     ax.spines['top'].set_color(foreground)     
     ax.spines['right'].set_color(foreground)    
     ax.spines['bottom'].set_color(foreground) 
